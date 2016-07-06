@@ -69,6 +69,7 @@ public class MainClass {
 		String inputText;
 
 		System.out.println("Введите текст");
+		// sc.reset(); // Не работает
 		sc.nextLine(); // WTF, Why?
 		inputText = sc.nextLine();
 
@@ -87,7 +88,7 @@ public class MainClass {
 
 		System.out.println("Введите текст");
 
-		sc.nextLine(); // WTF, Why?
+		sc.nextLine();
 		inputText = sc.nextLine();
 
 		for ( int i = 0; i < inputText.length(); i++ ) {
@@ -129,6 +130,7 @@ public class MainClass {
 		inputText = sc.nextLine();
 
 		firstLetter = "" + inputText.charAt(0); // снова дурацкая ситуация
+		//   Character.toUpperCase(inputText.charAt(0));
 
 		if( langEng.contains( firstLetter.toLowerCase() ) ){
 			currentLang = langEng;
