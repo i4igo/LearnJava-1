@@ -6,7 +6,6 @@ public class MainClass {
 
 	private static Scanner sc = new Scanner(System.in);
 
-
 	public static void main(String[] args) {
 		selectorTask();
 		sc.close();
@@ -49,10 +48,12 @@ public class MainClass {
 				task5();
 				break;
 			case 6:
+				System.out.println("Таблица городов");
 				System.out.println("");
 				task6();
 				break;
 			case 7:
+				System.out.println("Парсинг текста");
 				System.out.println("");
 				task7();
 				break;
@@ -255,9 +256,175 @@ public class MainClass {
 
 	private static void task6(){
 
+		String[] cities = {"Киев", "Санкт-Петербург", "Осло", "Копенгаген", "Лондон", "Магнитогорск",
+				"Одесса", "Минск", "Чернигов", "Афины", "Львов", "Днепропетровск", "Донецк",
+				"Ивано-Франковск", "Николаев", "Полтава", "Ровно", "Париж", "Владивосток", "Кривой Рог"};
+
+		System.out.println("Введите количество строк");
+		int rowsCities = sc.nextInt(); // 4
+
+		System.out.println("Введите количество столбцов");
+		int columnsCities = sc.nextInt(); // 5
+
+		String[][] rowCities = new String[rowsCities][columnsCities];
+		int currentCity;
+		int maxLengthCity;
+		int i = 0;
+		int n;
+
+		if ( ( rowsCities * columnsCities) > cities.length ) {
+			System.out.println( "Недостаточно городов в массиве: max-" +  cities.length);
+			return;
+		}
+
+		while (i < rowsCities){
+
+			n = 0;
+			while (	n < columnsCities){
+				currentCity = (int) (Math.random() *  cities.length);
+
+				int c = 0;
+
+				if ( cities[currentCity] != "") {
+
+					rowCities[i][n]		= cities[currentCity];
+					cities[currentCity] = "";
+
+					n++;
+					continue;
+				}
+
+				while( c <  cities.length ){
+					c++;
+					if (currentCity + 1 >= cities.length ) currentCity = currentCity + 1 - cities.length;
+					else currentCity = currentCity + 1;
+
+					if (cities[currentCity] != "") {
+						rowCities[i][n] = cities[currentCity];
+						cities[currentCity] = "";
+						break;
+					}
+				}
+
+				n++;
+			}
+
+			i++;
+		}
+
+		n=0;
+
+		while (n < columnsCities){
+			maxLengthCity = 0;
+
+			i = 0;
+			while (	i < rowsCities){
+				int lengthCity = rowCities[i][n].length();
+				maxLengthCity = ( maxLengthCity < lengthCity ) ? lengthCity : maxLengthCity;
+
+				i++;
+			}
+
+			i = 0;
+			while (i < rowsCities){
+				String cityToWidthRow = String.format("%-" + maxLengthCity + "s", rowCities[i][n]);
+				String endRow = (n > 0 && n == columnsCities -1 ) ? "\n" : " \t";
+				rowCities[i][n] =  cityToWidthRow + endRow;
+
+				i++;
+			}
+
+			n++;
+		}
+
+		for (String[] rows: rowCities ) {
+			for (String city: rows ) {
+				System.out.print( city );
+			}
+		}
+
 	}
 
 	private static void task7() {
+		String data = "Java is a computer programming language that is concurrent, " +
+				"class-based, object-oriented, and specifically designed to have as " +
+				"few implementation dependencies as possible. " +
+				"It is intended to let application developers \"write once, run anywhere\" " +
+				"(WORA), " + "meaning that code that runs on one platform does not need " +
+				"to be recompiled to run on another. " +
+				"Java applications are typically compiled to bytecode that can run on any Java " +
+				"virtual machine (JVM) regardless of computer architecture. " +
+				"Java is, as of 2014, one of the most popular programming languages in use, " +
+				"particularly for client-server web applications, with a reported 9 million " +
+				"developers. " +
+				"Java was originally developed by James Gosling at Sun Microsystems " +
+				"(which has since merged into Oracle Corporation) and released in 1995 as a core " +
+				"component of Sun Microsystems' Java platform. The language derives much of its " +
+				"syntax from C and C++, but it has fewer low-level facilities than either of them.";
 
+		int workerString = 0;
+		String stringDigits = "";
+		String stringBigLetter = "";
+		String stringSmallLetter = "";
+		String charToString;
+		boolean isBreak = true;
+
+
+		for (int i = 0 ; i < data.length(); i++){
+			int c = (int) data.charAt(i);
+			charToString = "" + data.charAt(i);
+
+
+			if( Character.isLetterOrDigit(c) ){
+
+				if (isBreak){
+					switch (workerString) {
+						case 2:
+							stringDigits += "\n";
+							break;
+						case 3:
+							stringBigLetter += "\n";
+							break;
+						case 4:
+							stringSmallLetter += "\n";
+							break;
+						default:
+							break;
+					}
+
+					if( Character.isAlphabetic(c)
+							&& charToString == charToString.toUpperCase() )
+						workerString = 3;
+
+					else workerString = 4;
+
+					if( Character.isDigit(c) ) {
+						workerString = 2;
+					}
+
+				}
+
+				switch (workerString) {
+					case 2:
+						stringDigits += charToString;
+						break;
+					case 3:
+						stringBigLetter += charToString;
+						break;
+					case 4:
+						stringSmallLetter += charToString;
+						break;
+					default:
+						break;
+				}
+
+				isBreak = false;
+
+			} else {
+				isBreak = true;
+			}
+		}
+
+		System.out.println(stringDigits + stringBigLetter + stringSmallLetter);
 	}
 }
