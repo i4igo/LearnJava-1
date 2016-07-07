@@ -5,8 +5,5 @@ public class MainClass {
 	public static void main(String[] args) {
 
 		SelectTask selectTask = new SelectTask();
-		
-
 	}
-
 }
