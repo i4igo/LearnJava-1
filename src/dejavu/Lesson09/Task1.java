@@ -36,7 +36,7 @@ public class Task1 {
     }
 
     private void analyzeSensitive(String inputText, boolean sensitive){
-        int[] resultCount = new int[6000];
+        int[] resultCount = new int[6000]; // размер масива не включал все символы для этого нужен двухмерный массив
         char currentSymbol;
 
         for(int i = 0; i < inputText.length(); i++){
