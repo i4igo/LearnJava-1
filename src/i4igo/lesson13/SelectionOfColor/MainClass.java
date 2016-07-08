@@ -13,6 +13,8 @@ import java.awt.*;
  *
  */
 
+// Андрею не читать
+
 public class MainClass {
 
     public static void main(String[] args) {
