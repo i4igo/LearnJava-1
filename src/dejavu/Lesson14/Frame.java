@@ -12,11 +12,15 @@ public class Frame extends JFrame {
     public Frame(){
         Init();
 
+        JPanel mainPanel = new JPanel();
+        mainPanel.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+
         LeftSide leftPanel = new LeftSide();
         RightSide rightPanel = new RightSide();
 
-        add(leftPanel);
-        add(rightPanel);
+        mainPanel.add(leftPanel);
+        mainPanel.add(rightPanel);
+        add(mainPanel);
     }
 
     public void Show(){

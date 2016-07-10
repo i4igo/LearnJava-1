@@ -14,9 +14,7 @@ public class Checkbox extends JCheckBox {
 
     }
     public boolean getStateCheckbox(){
-        this.addItemListener(e -> {
-            state = e.getStateChange() == ItemEvent.SELECTED;
-        });
+        this.addItemListener(e -> state = e.getStateChange() == ItemEvent.SELECTED);
 
         return state;
     }

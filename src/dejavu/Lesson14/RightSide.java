@@ -1,6 +1,9 @@
 package dejavu.Lesson14;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
+import java.awt.*;
 
 import static dejavu.Lesson14.Frame.FRAME_HEIGHT;
 import static dejavu.Lesson14.Frame.FRAME_WIDTH;
@@ -13,21 +16,19 @@ public class RightSide extends JPanel{
     Checkbox isUseSymbol;
 
     public RightSide(){
-        setSize(4*FRAME_WIDTH/12, FRAME_HEIGHT);
+        setSize(FRAME_WIDTH/2, FRAME_HEIGHT);
 
         isUseDigits = new Checkbox("Use Digits");
         isUseSymbol = new Checkbox("Use Symbol");
         JButton genPass = new JButton("Generate pass");
-        JLabel password = new JLabel();
+        JTextPane password = new JTextPane();
 
-        genPass.addActionListener(e -> {
-            password.setText( getNewPass() );
-        });
+        genPass.addActionListener(e -> password.setText( getNewPass() ));
 
         this.add(isUseDigits);
         this.add(isUseSymbol);
         this.add(genPass);
-        this.add(password);
+        this.add(password, BorderLayout.WEST);
     }
 
     private String getNewPass(){
@@ -39,7 +40,7 @@ public class RightSide extends JPanel{
         dictionary += genDict(65, 90);
         dictionary += genDict(97, 122);
 
-        if( isUseDigits.getStateCheckbox() ) dictionary += genDict(48,87);
+        if( isUseDigits.getStateCheckbox() ) dictionary += genDict(48,57);
         if( isUseSymbol.getStateCheckbox() ) {
             dictionary += genDict(33,47);
             dictionary += genDict(58,64);

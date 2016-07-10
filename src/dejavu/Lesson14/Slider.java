@@ -2,8 +2,6 @@ package dejavu.Lesson14;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.basic.BasicSliderUI;
-import java.awt.*;
 
 /**
  * Created by dejavu on 10.07.2016.

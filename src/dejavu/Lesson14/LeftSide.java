@@ -13,7 +13,7 @@ public class LeftSide extends JPanel{
     static JLabel digitsLabel;
 
     public LeftSide(){
-        setSize(6*FRAME_WIDTH/12, FRAME_HEIGHT);
+        setSize(FRAME_WIDTH/2, FRAME_HEIGHT);
 
         Slider qtyDigits = new Slider();
 
