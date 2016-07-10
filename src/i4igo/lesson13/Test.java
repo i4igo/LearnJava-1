@@ -1,4 +1,4 @@
-package i4igo.lesson13;
+package com.itea.java.lesson13;
 
 import java.awt.*;
 import java.util.*;
