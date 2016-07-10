@@ -20,7 +20,6 @@ import java.awt.*;
  *
  */
 
-//нужна помощь
 
 public class MainClass {
     public static void main(String[] args) {
