@@ -1,9 +1,5 @@
 package dejavu.Lesson09;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import static dejavu.Lesson09.SelectTask.sc;
 
 /**
