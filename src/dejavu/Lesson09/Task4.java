@@ -10,7 +10,7 @@ import static dejavu.Lesson09.SelectTask.sc;
  * База Данных сотрудников
  */
 public class Task4 {
-    ArrayList<String[]> db = new ArrayList<>();
+    private ArrayList<String[]> db = new ArrayList<>();
 
     static {
         new Task4();
