@@ -1,7 +1,5 @@
 package dejavu.Lesson14;
 
-import sun.plugin2.util.ColorUtil;
-
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -16,9 +14,10 @@ public class ColorFrame extends JFrame {
     private Slider g;
     private Slider b;
 
-    private JLabel labelR;
-    private JLabel labelG;
-    private JLabel labelB;
+    private Label labelR;
+    private Label labelG;
+    private Label labelB;
+    private Label labelHash;
 
     private ChangeListener listenR;
     private ChangeListener listenG;
@@ -37,42 +36,41 @@ public class ColorFrame extends JFrame {
         setLocation(500, 100);
 
         panel = new JPanel();
-        panel.setBackground( new Color( rColor, gColor, bColor) );
 
         r = new Slider();
         g = new Slider();
         b = new Slider();
 
-        labelR = new JLabel();
-        labelG = new JLabel();
-        labelB = new JLabel();
+        labelR = new Label();
+        labelG = new Label();
+        labelB = new Label();
+        labelHash = new Label();
 
-        labelR.setText("128");
-        labelG.setText("128");
-        labelB.setText("128");
+        setLabel(labelR, "" + rColor);
+        setLabel(labelG, "" + gColor);
+        setLabel(labelB, "" + bColor);
+
+        setColors();
 
         listenR = e -> {
             Slider source = (Slider) e.getSource();
             setLabel(labelR, "" + source.getValue());
             rColor = source.getValue();
-
-            panel.setBackground( new Color( rColor, gColor, bColor) );
+            setColors();
         };
 
         listenG = e -> {
             Slider source = (Slider) e.getSource();
             setLabel(labelG, "" + source.getValue());
             gColor = source.getValue();
-
-            panel.setBackground( new Color( rColor, gColor, bColor) );
+            setColors();
         };
 
         listenB = e -> {
             Slider source = (Slider) e.getSource();
             setLabel(labelB, "" + source.getValue());
             bColor = source.getValue();
-
-            panel.setBackground( new Color( rColor, gColor, bColor) );
+            setColors();
         };
 
         r.addChangeListener(listenR);
@@ -86,16 +84,39 @@ public class ColorFrame extends JFrame {
         panel.add(labelR);
         panel.add(labelG);
         panel.add(labelB);
+        panel.add(labelHash);
 
         add(panel);
     }
 
-    public void setLabel(JLabel label, String i) {
-        label.setText(i);
+    private void setColors() {
+
+        if(rColor > 255) rColor = 255;
+        if(gColor > 255) gColor = 255;
+        if(bColor > 255) bColor = 255;
+
+        if(rColor < 0) rColor = 0;
+        if(gColor < 0) gColor = 0;
+        if(bColor < 0) bColor = 0;
+
+        panel.setBackground( new Color( rColor, gColor, bColor) );
+
+        labelR.setBackground( Color.white );
+        labelG.setBackground( Color.white );
+        labelB.setBackground( Color.white );
+        labelHash.setBackground( Color.white );
+
+
+        setLabel(labelHash, "#"
+                + Integer.toHexString(rColor)
+                + Integer.toHexString(gColor)
+                + Integer.toHexString(bColor) );
+
+
     }
 
-    public void addNew(Component c){
-        panel.add(c);
+    public void setLabel(JLabel label, String i) {
+        label.setText(i);
     }
 
     public void Show(){
