@@ -2,6 +2,8 @@ package dejavu.Lesson14;
 
 import javax.swing.*;
 
+import java.awt.*;
+
 import static dejavu.Lesson14.Frame.FRAME_HEIGHT;
 import static dejavu.Lesson14.Frame.FRAME_WIDTH;
 
@@ -20,7 +22,6 @@ public class LeftSide extends JPanel{
         digitsLabel = new JLabel();
         digitsLabel.setText("13");
         digitsLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
-
 
         qtyDigits.getListen(digitsLabel);
 
