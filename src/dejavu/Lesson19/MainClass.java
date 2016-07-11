@@ -2,8 +2,6 @@ package dejavu.Lesson19;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by dejavu on 11.07.2016.
@@ -12,6 +10,15 @@ public class MainClass {
     static int xRect;
 
     public static void main(String[] args){
+        JFrame frame = new JFrame();
+        BallPanel bP = new BallPanel();
+
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(600,400);
+
+        frame.add(bP);
+
+        frame.setVisible(true);
 
     }
 
@@ -28,9 +35,12 @@ public class MainClass {
                 new Thread(() -> {
                     for(int i = 0; i<30; i++){
                         xRect +=5;
+
+                        try { Thread.sleep(200); } catch (InterruptedException e1) { e1.printStackTrace(); }
+
                         repaint();
                     }
-                });
+                }).start();
             });
 
             this.add(b);
