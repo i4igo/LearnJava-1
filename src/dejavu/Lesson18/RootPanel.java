@@ -13,7 +13,7 @@ public class RootPanel extends JPanel {
         this.setBackground(Color.pink);
         setLayout(new BorderLayout());
 
-        ChatPanel dialogPanel   = new ChatPanel();
+        ChatPanel dialogPanel = new ChatPanel();
         dialogPanel.setPreferredSize(new Dimension(2*frameWidth/3, 3*frameHeight/3));
         this.add(dialogPanel, BorderLayout.WEST);
 
