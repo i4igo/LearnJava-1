@@ -1,6 +1,7 @@
 package i4igo.lesson13.PasswordGenerate;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 /** Created by Ev on 09.07.2016.
@@ -19,11 +20,9 @@ public class PanelMain extends JPanel {
     PanelMain(){
 
         panelSlider = new PanelSlider();
-        panelOptions = new PanelOptions();
+        panelOptions = new PanelOptions(panelSlider);
 
         add(panelSlider);
         add(panelOptions);
-
     }
-
 }

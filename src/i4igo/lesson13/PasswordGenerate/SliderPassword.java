@@ -2,31 +2,21 @@ package i4igo.lesson13.PasswordGenerate;
 
 import javax.swing.*;
 
-/** Created by Ev on 09.07.2016.
- *
- *  конструктор SliderPassword
- *
+/**
+ * Created by Ev on 09.07.2016.
  */
 
 public class SliderPassword extends JSlider {
 
 
     SliderPassword(){
+        super(HORIZONTAL, 0, 14, 5);
 
-        setMinimum(0);
-        setMaximum(14);
-        setValue(5);
-
-        setOrientation(HORIZONTAL);         // ориентация
-        setMajorTickSpacing(14/2);            // основные деления
-        setMinorTickSpacing(14/14);        // дополнительные деления
-
-        //setSnapToTicks(true);             // привязка к делениям
+        setMajorTickSpacing(14/2);          // основные деления
+        setMinorTickSpacing(14/14);         // дополнительные деления
 
         setPaintTicks(true);                // показать деления
         setPaintLabels(true);               // показать метки
-
-        //setPaintTrack(true);              // изменять цвет дорожки
     }
 
 }

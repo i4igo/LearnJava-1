@@ -1,8 +1,6 @@
 package i4igo.lesson13.PasswordGenerate;
 
 import javax.swing.*;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -25,9 +23,9 @@ public class PanelSlider extends JPanel {
     PanelSlider(){
 
         slider = new SliderPassword();
-
         textFieldSlider = new JTextField(String.valueOf(slider.getValue()), 5);
 
+        //обработчик событий slider
         listenerSlider = new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -40,11 +38,9 @@ public class PanelSlider extends JPanel {
 
         add(slider);
         add(textFieldSlider);
-
     }
 
-
-    public int passwordLong(){
+    public int getTextField(){
         return slider.getValue();
     }
 }
