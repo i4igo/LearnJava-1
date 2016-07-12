@@ -3,28 +3,14 @@ package dejavu.Lesson19.AnimationColor;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by dejavu on 10.07.2016.
+ * Application Color Animate
  */
 public class ColorFrame extends JFrame {
-    private Panel rootPanel;
-    private Panel panelTop;
-    private Panel panelMiddle;
-    private Panel panelButtom;
     private Panel colorPanelLeft;
     private Panel colorPanelRight;
-
-
-    private Slider r;
-    private Slider g;
-    private Slider b;
-
-    private ChangeListener listenR;
-    private ChangeListener listenG;
-    private ChangeListener listenB;
 
     private static int rColor = 0;
     private static int gColor = 0;
@@ -33,9 +19,7 @@ public class ColorFrame extends JFrame {
     final static int FRAME_WIDTH = 400;
     final static int FRAME_HEIGHT = 400;
 
-
-
-    public ColorFrame(){
+    ColorFrame(){
         setTitle("Home Work Color selection");
         setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -43,40 +27,38 @@ public class ColorFrame extends JFrame {
         setLayout(new BorderLayout());
 
 
-        rootPanel = new Panel(FRAME_WIDTH, FRAME_HEIGHT);
+        Panel rootPanel = new Panel(FRAME_WIDTH, FRAME_HEIGHT);
 
-        panelTop    = new Panel( FRAME_HEIGHT / 6 * 3);
-        panelMiddle = new Panel( FRAME_HEIGHT / 6 );
-        panelButtom = new Panel( FRAME_HEIGHT / 6 );
+        Panel panelTop = new Panel(FRAME_HEIGHT / 6 * 3);
+        Panel panelMiddle = new Panel(FRAME_HEIGHT / 6);
+        Panel panelButtom = new Panel(FRAME_HEIGHT / 6);
 
         colorPanelLeft  = new Panel(150, 150);
         colorPanelRight = new Panel(150, 150);
 
-        r = new Slider();
-        g = new Slider();
-        b = new Slider();
+        Slider r = new Slider();
+        Slider g = new Slider();
+        Slider b = new Slider();
 
         Button button = new Button("Animate");
-        button.addActionListener(e -> {
-            changeColors();
-        });
+        button.addActionListener(e -> changeColors());
 
         setColors(colorPanelLeft);
         setColors(colorPanelRight);
 
-        listenR = e -> {
+        ChangeListener listenR = e -> {
             Slider source = (Slider) e.getSource();
             rColor = source.getValue();
             setColors(colorPanelRight);
         };
 
-        listenG = e -> {
+        ChangeListener listenG = e -> {
             Slider source = (Slider) e.getSource();
             gColor = source.getValue();
             setColors(colorPanelRight);
         };
 
-        listenB = e -> {
+        ChangeListener listenB = e -> {
             Slider source = (Slider) e.getSource();
             bColor = source.getValue();
             setColors(colorPanelRight);
@@ -100,15 +82,6 @@ public class ColorFrame extends JFrame {
         rootPanel.add(panelButtom, BorderLayout.SOUTH);
 
         add(rootPanel);
-    }
-
-    private void setColors(Panel panel) {
-
-        rColor = (rColor > 255) ? (rColor < 0) ? 0: 255: rColor;
-        gColor = (gColor > 255) ? (gColor < 0) ? 0: 255: gColor;
-        bColor = (bColor > 255) ? (bColor < 0) ? 0: 255: bColor;
-
-        panel.setBackground(new Color( rColor, gColor, bColor));
     }
 
     private void changeColors(){
@@ -143,6 +116,15 @@ public class ColorFrame extends JFrame {
         }).start();
     }
 
+    private void setColors(Panel panel) {
+
+        rColor = (rColor > 255) ? (rColor < 0) ? 0: 255: rColor;
+        gColor = (gColor > 255) ? (gColor < 0) ? 0: 255: gColor;
+        bColor = (bColor > 255) ? (bColor < 0) ? 0: 255: bColor;
+
+        panel.setBackground(new Color( rColor, gColor, bColor));
+    }
+
     private int getNextColor(int oldColor, int newColor){
         int nextColor;
 
@@ -166,7 +148,7 @@ public class ColorFrame extends JFrame {
         return max;
     }
 
-    public void Show(){
+    void Show(){
         setVisible(true);
     }
 

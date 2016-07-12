@@ -1,10 +1,8 @@
 package dejavu.Lesson19.AnimationColor;
 
-import java.awt.*;
-
 /**
  * Created by dejavu on 10.07.2016.
- * Home Work
+ * Home Work Task1 Lesson 19
  */
 public class MainClass {
 
