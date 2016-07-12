@@ -44,14 +44,11 @@ public class MainClass {
             });
 
             this.add(b);
-            this.setBackground(Color.green);
-
         }
 
         protected void paintComponent(Graphics g){
             super.paintComponent(g);
             g.fillRect(xRect, 70, 80, 120);
-            System.out.println("paintComponent");
         }
     }
 }
