@@ -60,9 +60,6 @@ public class PanelOptions extends JPanel {
         add(chek2);
         add(buttonGenerate);
         add(password);
-
-        System.out.println(chek1.getCheckBox());
-
     }
 
     // метод генерации пароля
