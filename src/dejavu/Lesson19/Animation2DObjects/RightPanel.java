@@ -12,6 +12,8 @@ import static dejavu.Lesson19.Animation2DObjects.Frame.APP_WIDTH;
 public class RightPanel extends JPanel {
     RightPanel(){
         initPanel();
+
+        // Add controls checkbox (dots) for set lines path
     }
 
     private void initPanel() {

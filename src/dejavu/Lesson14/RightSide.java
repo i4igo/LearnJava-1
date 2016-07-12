@@ -1,8 +1,6 @@
 package dejavu.Lesson14;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-
 import java.awt.*;
 
 import static dejavu.Lesson14.Frame.FRAME_HEIGHT;
@@ -11,6 +9,7 @@ import static dejavu.Lesson14.Frame.FRAME_WIDTH;
 /**
  * Created by dejavu on 10.07.2016.
  */
+
 public class RightSide extends JPanel{
     Checkbox isUseDigits;
     Checkbox isUseSymbol;

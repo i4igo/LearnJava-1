@@ -18,10 +18,12 @@ public class BottomPanel extends JPanel{
 
         start.addActionListener( e -> {
             System.out.println("START");
+            // Insert action for start Thread
         });
 
         stop.addActionListener( e -> {
             System.out.println("STOP");
+            // Insert action for stop Thread
         });
 
         add(start);
@@ -32,4 +34,6 @@ public class BottomPanel extends JPanel{
         setPreferredSize( new Dimension(APP_WIDTH, APP_HEIGHT /4 ) );
         setBackground( new Color(163,157,140) );
     }
+
+    // Insert methods by control Thread
 }

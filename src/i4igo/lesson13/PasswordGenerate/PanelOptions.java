@@ -1,12 +1,10 @@
 package i4igo.lesson13.PasswordGenerate;
 
-import sun.security.util.Password;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 
 /** Created by Ev on 09.07.2016.
  *
@@ -16,7 +14,7 @@ import java.awt.event.ItemListener;
 public class PanelOptions extends JPanel {
 
 
-    // попроую без этой кабалы
+    // попроую без этой кабалы (но так быстрее)
     private final Character[] MASS_SYMBOL = {'A','B','C','D','E','F','G','H','I','J','K','L','M',
                                             'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
                                             'a','b','c','d','e','f','g','h','i','j','k','l','m',
@@ -25,127 +23,85 @@ public class PanelOptions extends JPanel {
                                             '?',';',':','@','#','$','%','^','&','*','(',')','-',
                                             '=','+','/','|','\\','<','>','[',']','{','}'};
 
+    private PanelSlider ps;
+
     private DigitCheckBox chek1;
     private DigitCheckBox chek2;
     private JButton buttonGenerate;
-    private JLabel label;
+    private JTextField password;
 
-    private ItemListener listenerCheckBox;
     private ActionListener listenerButton;
 
-    private boolean digit;
-    private boolean symbol;
+    private Character[] array;
+    private String result;
 
 
-    PanelOptions(){
+    PanelOptions(PanelSlider ps){
+
+        this.ps = ps;
+
+        setLayout(new GridLayout(4, 1, 0, 10));
 
         chek1 = new DigitCheckBox("use Digits");
         chek2 = new DigitCheckBox("use Symbols");
-
-        listenerCheckBox = new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-
-                DigitCheckBox source = (DigitCheckBox) e.getSource();
-
-                switch (source.getName()){
-                    case "use Digits":
-                        digit = source.isSelected();
-                        break;
-                    case "use Symbols":
-                        symbol = source.isSelected();
-                        break;
-                    default:
-                        System.out.println("ошибка!!!");
-
-                }
-            }
-        };
-
         buttonGenerate = new JButton("generate password");
+        password = new JTextField("Ваш пароль");
 
         listenerButton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clickButton(digit, symbol);
+                clickButton();
             }
         };
-
-        label = new JLabel("");
-
-        chek1.addItemListener(listenerCheckBox);
-        chek2.addItemListener(listenerCheckBox);
 
         buttonGenerate.addActionListener(listenerButton);
 
         add(chek1);
         add(chek2);
         add(buttonGenerate);
-        add(label);
-
+        add(password);
     }
 
-
-    // КАК СЮДА ПЕРЕДАТЬ ДАННЫЕ textFieldSlider ПАНЕЛИ PanelSlider
-
-
-
     // метод генерации пароля
-    public void clickButton(boolean digit, boolean symbol){
+    public void clickButton(){
 
-        int kkk = new PanelSlider().passwordLong();
-        System.out.println(kkk);
+        array = new Character[ps.getTextField()];
+        result = null;
 
-        Character[] array = new Character[10];
-        int l = -1;
-
-        StringBuilder ss = new StringBuilder();
-
-        if (digit == true)
-            l = symbol == true ? 2 : 1;
-        else
-            l = symbol == true ? 0 : -1;
-
-        switch (l){
-            case 2:
-                for(int i = 0; i < array.length; i++) {
-                    array[i] = MASS_SYMBOL[(int)(Math.random()*MASS_SYMBOL.length)];
+        // очень даже все и понятно, было через switch, понятнее
+        if (chek1.getCheckBox()) {
+            if (chek2.getCheckBox()) {
+                for (int i = 0; i < array.length; i++) {
+                    array[i] = MASS_SYMBOL[(int) (Math.random() * MASS_SYMBOL.length)];
                 }
-                break;
-
-            case 1:
-                for(int i = 0; i < array.length; i++) {
-                    array[i] = MASS_SYMBOL[(int)(Math.random()*61)];
+            } else{
+                for (int i = 0; i < array.length; i++) {
+                    array[i] = MASS_SYMBOL[(int) (Math.random() * 61)];
                 }
-                break;
-
-            case 0:
-                for(int i = 0; i < array.length; i++) {
+            }
+        } else {
+            if (chek2.getCheckBox()) {
+                for (int i = 0; i < array.length; i++) {
                     int chek = -1;
-                    while(chek == -1) {
+                    while (chek == -1) {
                         int k = (int) (Math.random() * MASS_SYMBOL.length);
                         if (k <= 51 | k >= 62) {
                             array[i] = MASS_SYMBOL[k];
                             chek = 1;
-                        } else chek =- 1;
+                        } else chek = -1;
                     }
                 }
-                break;
-
-            case -1:
-                for(int i = 0; i < array.length; i++) {
-                    array[i] = MASS_SYMBOL[(int)(Math.random()*51)];
+            } else {
+                for (int i = 0; i < array.length; i++) {
+                    array[i] = MASS_SYMBOL[(int) (Math.random() * 51)];
                 }
-                break;
-            default:
-                System.out.println("Ошибка!");
+            }
         }
 
         for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]);
-            ss.append(String.valueOf(array[i]));
+            result += "" + array[i];
         }
 
-        label.setText(new String(ss));
+        password.setText(result);
     }
 }

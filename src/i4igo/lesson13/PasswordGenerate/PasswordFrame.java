@@ -10,8 +10,8 @@ import javax.swing.*;
 
 public class PasswordFrame extends JFrame {
 
-    private static final int FRAME_WIDTH = 800;
-    private static final int FRAME_HEIGHT = 600;
+    private static final int FRAME_WIDTH = 500;
+    private static final int FRAME_HEIGHT = 250;
 
     private PanelMain panelMain;
 
