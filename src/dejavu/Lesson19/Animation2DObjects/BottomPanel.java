@@ -1,7 +1,5 @@
 package dejavu.Lesson19.Animation2DObjects;
 
-import dejavu.Lesson19.AnimationColor.Motions;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,9 +11,12 @@ import static dejavu.Lesson19.Animation2DObjects.Frame.APP_WIDTH;
 public class BottomPanel extends JPanel{
     public static Button bStart;
     public static Button bStop;
+    private final LeftPanel bbbb;
 
-    BottomPanel(){
+    BottomPanel(LeftPanel lfPanel){
+        this.bbbb = lfPanel;
         initPanel();
+        new Motions(bbbb); // ОПИЛИТЬ
 
         bStart = new Button("Start");
         bStop = new Button("Stop");

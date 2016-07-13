@@ -3,8 +3,8 @@ package dejavu.Lesson19.Animation2DObjects;
 import javax.swing.*;
 import java.awt.*;
 
-import static dejavu.Lesson19.AnimationColor.Motions.x1;
-import static dejavu.Lesson19.AnimationColor.Motions.y1;
+import static dejavu.Lesson19.Animation2DObjects.Motions.x1;
+import static dejavu.Lesson19.Animation2DObjects.Motions.y1;
 
 /**
  * Created by dejavu on 13.07.2016.

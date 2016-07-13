@@ -1,4 +1,4 @@
-package dejavu.Lesson19.AnimationColor;
+package dejavu.Lesson19.Animation2DObjects;
 
 
 import dejavu.Lesson19.Animation2DObjects.RightPanel;
@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_HEIGHT;
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_WIDTH;
+import static dejavu.Lesson19.Animation2DObjects.LeftPanel.ball;
 
 /**
  * Created by dejavu on 13.07.2016.
@@ -17,6 +18,11 @@ public class Motions extends JPanel {
     private static int x2, y2;
     private static int speed = 20;
     private final static int START_POINT = 20;
+    private static LeftPanel ballBBBB;
+
+    Motions(LeftPanel bbbb){
+        ballBBBB = bbbb;
+    }
 
     public static void startMove() {
 
@@ -46,7 +52,7 @@ public class Motions extends JPanel {
     }
 
     private static void repaintBall(double x, double y){
-        // ЧТО СЮДА ПИСАТЬ???????
+        ballBBBB.repaint();
     }
 
     private static void moveHorizontal(){

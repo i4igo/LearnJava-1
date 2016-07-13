@@ -6,7 +6,7 @@ import java.awt.*;
 
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_HEIGHT;
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_WIDTH;
-import static dejavu.Lesson19.AnimationColor.Motions.*;
+import static dejavu.Lesson19.Animation2DObjects.Motions.*;
 
 /**
  * Created by dejavu on 12.07.2016.
@@ -21,6 +21,7 @@ public class LeftPanel extends JPanel {
 //        Ball ball = new Ball();
 //
 //        add(ball);
+
     }
 
     private void initPanel(){

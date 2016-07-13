@@ -15,7 +15,7 @@ public class Frame extends JFrame {
 
         LeftPanel lfPanel = new LeftPanel();
         RightPanel rgPanel = new RightPanel();
-        BottomPanel bPanel = new BottomPanel();
+        BottomPanel bPanel = new BottomPanel(lfPanel);
 
 
         add(lfPanel, BorderLayout.WEST);
