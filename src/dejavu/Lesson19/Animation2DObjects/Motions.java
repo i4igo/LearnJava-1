@@ -1,13 +1,8 @@
 package dejavu.Lesson19.Animation2DObjects;
 
-
-import dejavu.Lesson19.Animation2DObjects.RightPanel;
-
 import javax.swing.*;
-
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_HEIGHT;
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_WIDTH;
-import static dejavu.Lesson19.Animation2DObjects.LeftPanel.ball;
 
 /**
  * Created by dejavu on 13.07.2016.
@@ -16,15 +11,17 @@ public class Motions extends JPanel {
     public static int x1 = 20;
     public static int y1 = 20;
     private static int x2, y2;
-    private static int speed = 20;
+    private static int speed = 6;
     private final static int START_POINT = 20;
-    private static LeftPanel ballBBBB;
+    private static LeftPanel ball;
 
-    Motions(LeftPanel bbbb){
-        ballBBBB = bbbb;
+    Motions(LeftPanel ball){
+
+        this.ball = ball;
     }
 
     public static void startMove() {
+        moveToStart();
 
         switch ( RightPanel.getRadioSelected() ){
             case "horizontal":
@@ -51,8 +48,8 @@ public class Motions extends JPanel {
         }
     }
 
-    private static void repaintBall(double x, double y){
-        ballBBBB.repaint();
+    private static void repaintBall(){
+        ball.repaint();
     }
 
     private static void moveHorizontal(){
@@ -60,15 +57,16 @@ public class Motions extends JPanel {
         y2 = y1;
 
         moveByLine(x2, y2, speed);
+        moveByLine(START_POINT, START_POINT, speed);
     }
 
     private static void moveSquare(){
-        x2 = x1 + ( 2* APP_WIDTH /3 ) - (2 * x1);
+        x2 = ( 2* APP_WIDTH /3 ) - (2 * x1);
         y2 = y1;
         moveByLine(x2, y2, speed);
 
         x2 = x1;
-        y2 = y1 + ( APP_HEIGHT - 50 ) - (2 * y1);
+        y2 = ( APP_HEIGHT - 50 ) - (4 * y1);
         moveByLine(x2, y2, speed);
 
         x2 = START_POINT;
@@ -81,22 +79,24 @@ public class Motions extends JPanel {
     }
 
     private static void moveSpeed(){
-        x2 = ( 2* APP_WIDTH /3 ) - (2 * x1);
+        x2 = ( 2 * APP_WIDTH /3 ) - (2 * x1);
         y2 = y1;
 
-        moveByLine(x2, y2, speed/2);
+        moveByLine(x2, y2, speed/3);
+        moveByLine(START_POINT, START_POINT, speed/3);
     }
 
     private static void moveCircle(){
         double angel = 0;
 
-        while(angel < 1){
-            double x = Math.cos(angel);
-            double y = Math.sin(angel);
+        while(angel < 360){
+            x1 = (int) (180 * Math.cos(Math.PI * angel/180)) + ( 2 * APP_WIDTH /3 ) / 2;
+            y1 = (int) (180 * Math.sin(Math.PI * angel/180)) + ( APP_HEIGHT - 100) / 2;
 
-            repaintBall( x, y);
+            repaintBall();
+            delay(speed);
 
-            angel += Math.PI/180 * 2;
+            angel++;
         }
     }
 
@@ -108,13 +108,10 @@ public class Motions extends JPanel {
 
     }
 
-    private static void moveToStart(){
-
-    }
-
     private static void moveByLine(int x2, int y2, int s){
         int startPoint;
         int endPoint;
+        int i = 0;
 
         int x = ( x1 > x2 ) ? x1 - x2: x2 - x1;
         int y = ( y1 > y2 ) ? y1 - y2: y2 - y1;
@@ -122,8 +119,9 @@ public class Motions extends JPanel {
         startPoint  = (x > y) ? x1 : y1;
         endPoint    = (x > y) ? x2 : y2;
 
+        int n = ( startPoint > endPoint ) ? startPoint: endPoint;
 
-        while( startPoint < endPoint ){
+        while( i < n ){
 
             if( x1 > x2 ) x1--;
             if( x1 < x2 ) x1++;
@@ -131,11 +129,16 @@ public class Motions extends JPanel {
             if( y1 > y2 ) y1--;
             if( y1 < y2 ) y1++;
 
-            repaintBall( x1, y1 );
+            repaintBall();
 
-            startPoint++;
+            i++;
             delay(s);
         }
+    }
+
+    private static void moveToStart(){
+        x1 = START_POINT;
+        y1 = START_POINT;
     }
 
     private static void delay(int t){

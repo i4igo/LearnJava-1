@@ -16,12 +16,6 @@ public class LeftPanel extends JPanel {
 
     LeftPanel (){
         initPanel();
-
-        // Вызвать repaint() из другого класса
-//        Ball ball = new Ball();
-//
-//        add(ball);
-
     }
 
     private void initPanel(){

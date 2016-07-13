@@ -1,7 +1,6 @@
 package dejavu.Lesson20;
 
 
-import jdk.nashorn.internal.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -80,7 +79,7 @@ public class LessonWork {
 //            JSONObject jsonCity = (JSONObject) data.get(i);
 //
 //            String id = (String) jsonCity.get("id");
-        }
+//        }
 
 
 
