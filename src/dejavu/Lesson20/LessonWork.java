@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -16,8 +15,15 @@ import java.net.URL;
 public class LessonWork {
     public static void main(String[] args) throws IOException {
 
-        httpWork();
+//        httpWork();
 
+        String post;
+
+        post = "{region:{" +
+                "id:12;name_ua:"+
+                "}}";
+
+        jsonWork(post);
 
     }
 
@@ -33,8 +39,35 @@ public class LessonWork {
 
     }
 
-    private void jsonWork(){
+    private static void jsonWork(String post){
 
+//        post;
+
+        class Region{
+            String id;
+            String name_ua;
+            String name_ru;
+            String name_en;
+
+            class RegionCouncil{
+                String id;
+                String name_ua;
+                String name_ru;
+                String name_en;
+            }
+        }
+
+        class CityResponce{
+            String code;
+            String prefix;
+            City data[];
+
+            class City{
+                String id;
+                String name;
+                String district;
+            }
+        }
     }
 
     private void downloadText() throws IOException {
