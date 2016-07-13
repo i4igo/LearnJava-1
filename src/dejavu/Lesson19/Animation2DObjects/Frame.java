@@ -7,8 +7,8 @@ import java.awt.*;
  * Created by dejavu on 12.07.2016.
  */
 public class Frame extends JFrame {
-    final static int APP_WIDTH = 800;
-    final static int APP_HEIGHT = 600;
+    public final static int APP_WIDTH = 840;
+    public final static int APP_HEIGHT = 500;
 
     Frame (){
         initFrame();
