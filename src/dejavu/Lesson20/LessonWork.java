@@ -9,9 +9,25 @@ import java.net.URL;
 
 /**
  * Created by dejavu on 13.07.2016.
+ * Class Work 20
  */
 public class LessonWork {
     public static void main(String[] args) throws IOException {
+
+        httpWork();
+
+
+    }
+
+    private static void httpWork(){
+
+    }
+
+    private void jsonWork(){
+
+    }
+
+    private void downloadText() throws IOException {
 
         URL iua = new URL("http://i.ua/");
 
@@ -19,8 +35,12 @@ public class LessonWork {
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader in = new BufferedReader(isr);
 
-
-
-        System.out.println(in);
+        in.close();
     }
+
+    private void downloadFile(){
+
+
+    }
+
 }
