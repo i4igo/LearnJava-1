@@ -1,6 +1,8 @@
 package dejavu.Lesson20;
 
 
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,9 +21,7 @@ public class LessonWork {
 
         String post;
 
-        post = "{region:{" +
-                "id:12;name_ua:"+
-                "}}";
+        post = "{region:{id:12;name_ua:}}";
 
         jsonWork(post);
 
@@ -41,7 +41,6 @@ public class LessonWork {
 
     private static void jsonWork(String post){
 
-//        post;
 
         class Region{
             String id;
@@ -68,6 +67,23 @@ public class LessonWork {
                 String district;
             }
         }
+
+//        JSONParser jsonParser = new JSONParser();
+//        Object obj = jsonParser.parse(post);
+//
+//        JSONObject jsonObject = (JSONObject) obj;
+//        String reg = (String) jsonObject.get("region");
+//        long id = (long) jsonObject.get("id");
+//        JSONArray data = (JSONArray) jsonObject.get("data");
+//
+//        for( int i = 0; data.size(); i++){
+//            JSONObject jsonCity = (JSONObject) data.get(i);
+//
+//            String id = (String) jsonCity.get("id");
+        }
+
+
+
     }
 
     private void downloadText() throws IOException {
