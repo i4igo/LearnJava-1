@@ -66,7 +66,7 @@ public class PanelOptions extends JPanel {
     public void clickButton(){
 
         array = new Character[ps.getTextField()];
-        result = null;
+        result = "";
 
         // очень даже все и понятно, было через switch, понятнее
         if (chek1.getCheckBox()) {
