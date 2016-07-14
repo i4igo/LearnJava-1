@@ -15,6 +15,7 @@ public class MainClass {
     public static void main(String[] args){
 
         Frame frame = new Frame();
+        frame.setLocationRelativeTo(null);
         frame.showApp();
     }
 }

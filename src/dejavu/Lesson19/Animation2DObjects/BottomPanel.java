@@ -2,36 +2,36 @@ package dejavu.Lesson19.Animation2DObjects;
 
 import javax.swing.*;
 import java.awt.*;
-
-import static dejavu.Lesson19.Animation2DObjects.Frame.APP_HEIGHT;
 import static dejavu.Lesson19.Animation2DObjects.Frame.APP_WIDTH;
 
 /**
  * Created by dejavu on 12.07.2016.
  */
 public class BottomPanel extends JPanel{
+    public static Button bStart;
+    public static Button bStop;
+
     BottomPanel(){
         initPanel();
 
-        Button start = new Button("Start");
-        Button stop  = new Button("Stop");
+        bStart = new Button("Start");
+        bStop = new Button("Stop");
 
-        start.addActionListener( e -> {
-            System.out.println("START");
+        bStart.addActionListener(e -> new Thread(
+                Motions::startMove
+        ).start());
+
+        bStop.addActionListener(e -> {
+            System.out.println("STOP");
             // Insert action for start Thread
         });
 
-        stop.addActionListener( e -> {
-            System.out.println("STOP");
-            // Insert action for stop Thread
-        });
-
-        add(start);
-        add(stop);
+        add(bStart);
+        add(bStop);
     }
 
     private void initPanel() {
-        setPreferredSize( new Dimension(APP_WIDTH, APP_HEIGHT /4 ) );
+        setPreferredSize( new Dimension(APP_WIDTH, 50 ) );
         setBackground( new Color(163,157,140) );
     }
 

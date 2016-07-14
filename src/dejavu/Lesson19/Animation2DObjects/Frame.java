@@ -7,8 +7,8 @@ import java.awt.*;
  * Created by dejavu on 12.07.2016.
  */
 public class Frame extends JFrame {
-    final static int APP_WIDTH = 800;
-    final static int APP_HEIGHT = 600;
+    public final static int APP_WIDTH = 840;
+    public final static int APP_HEIGHT = 500;
 
     Frame (){
         initFrame();
@@ -16,6 +16,7 @@ public class Frame extends JFrame {
         LeftPanel lfPanel = new LeftPanel();
         RightPanel rgPanel = new RightPanel();
         BottomPanel bPanel = new BottomPanel();
+        new Motions(lfPanel);
 
 
         add(lfPanel, BorderLayout.WEST);
