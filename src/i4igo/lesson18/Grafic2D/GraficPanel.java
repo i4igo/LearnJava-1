@@ -9,10 +9,21 @@ import java.awt.*;
 
 public class GraficPanel extends JPanel {
 
+    private final int xRect = 10;
+
     GraficPanel() {
         super();
         setBackground(Color.LIGHT_GRAY);
 
+
+
+    }
+    
+    protected void paintComponent(Graphics g){
+            super.paintComponent(g);
+
+        g.fillOval(xRect, 70, 100, 100);
+        
     }
 
 }

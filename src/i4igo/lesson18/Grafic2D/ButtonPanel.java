@@ -11,14 +11,15 @@ import java.awt.event.ActionEvent;
 public class ButtonPanel extends JPanel{
     ButtonPanel(){
         super();
-        setBackground(Color.cyan);
-
-        JButton button = new JButton("Start");
-        button.addActionListener((ActionEvent e) -> {
+        JButton buttonStart = new JButton("Start");
+        buttonStart.addActionListener((ActionEvent e) -> {
             // запускаем шарик (наверное, в отдельном потоке)
-            button.setText("Ok");
+            buttonStart.setText("Ok");
         });
 
-        add(button);
+        JButton buttonStop = new JButton("Stop");
+
+        add(buttonStart);
+        add(buttonStop);
     }
 }

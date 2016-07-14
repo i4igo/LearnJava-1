@@ -8,8 +8,8 @@ import javax.swing.*;
 
 public class Grafic2DFrame extends JFrame{
 
-    public static final int FRAME_WIDTH = 800;
-    public static final int FRAME_HEIGHT = 500;
+    private static final int FRAME_WIDTH = 1000;
+    private static final int FRAME_HEIGHT = 700;
 
     private FramePanel framePanel;
 
