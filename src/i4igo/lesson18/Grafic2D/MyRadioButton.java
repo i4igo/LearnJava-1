@@ -7,7 +7,11 @@ import javax.swing.*;
  */
 
 public class MyRadioButton extends JRadioButton {
-    MyRadioButton(){
-        super();
+
+    private String name;
+
+    MyRadioButton(String name){
+        this.name = name;
+        setText(name);
     }
 }
