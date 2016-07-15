@@ -33,4 +33,8 @@ public class OptionPanel extends JPanel {
         add(radioButton5);
         add(radioButton6);
     }
+
+    public void getRadioButton(){
+
+    }
 }

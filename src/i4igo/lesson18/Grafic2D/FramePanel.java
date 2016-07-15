@@ -35,7 +35,7 @@ public class FramePanel extends JPanel {
         optionPanel.setPreferredSize(new Dimension(widthFrame/4, heightFrame));
         add(optionPanel, BorderLayout.EAST);
 
-        buttonPanel = new ButtonPanel();                                                        //добавить ссылки на другие панели
+        buttonPanel = new ButtonPanel(graficPanel);                                                        //добавить ссылки на другие панели
         buttonPanel.setPreferredSize(new Dimension(widthFrame, heightFrame/8));
         add(buttonPanel, BorderLayout.SOUTH);
 

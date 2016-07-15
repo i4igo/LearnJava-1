@@ -9,17 +9,42 @@ import java.awt.event.ActionEvent;
  */
 
 public class ButtonPanel extends JPanel{
-    ButtonPanel(){
-        super();
-        JButton buttonStart = new JButton("Start");
+
+    JButton buttonStart;
+    JButton buttonStop;
+
+    private int xOval;
+    private GraficPanel gp;
+
+    ButtonPanel(GraficPanel gp){
+        this.gp = gp;
+        buttonStart = new JButton("Start");
+
         buttonStart.addActionListener((ActionEvent e) -> {
             // запускаем шарик (наверное, в отдельном потоке)
-            buttonStart.setText("Ok");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //////////////////////////////
+                    gp.paint();
+                }
+            }).start();
         });
 
-        JButton buttonStop = new JButton("Stop");
+        buttonStop = new JButton("Stop");
 
         add(buttonStart);
         add(buttonStop);
     }
+
+/*
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+
+        g.fillOval(xOval, 70, 70, 70);
+
+    }*/
+
+
+
 }

@@ -9,20 +9,35 @@ import java.awt.*;
 
 public class GraficPanel extends JPanel {
 
-    private final int xRect = 10;
+    private int xOval = 10;
 
     GraficPanel() {
         super();
         setBackground(Color.LIGHT_GRAY);
 
 
-
     }
-    
-    protected void paintComponent(Graphics g){
+
+
+    public void paint(){
+        for (int i=0; i<100; i++){
+            xOval += 5;
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+    }
+
+
+
+    @Override
+    public void paintComponent(Graphics g){
             super.paintComponent(g);
 
-        g.fillOval(xRect, 70, 100, 100);
+        g.fillOval(xOval, 70, 70, 70);
         
     }
 
