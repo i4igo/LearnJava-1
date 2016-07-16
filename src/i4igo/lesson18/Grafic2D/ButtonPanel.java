@@ -10,41 +10,36 @@ import java.awt.event.ActionEvent;
 
 public class ButtonPanel extends JPanel{
 
-    JButton buttonStart;
-    JButton buttonStop;
+    private JButton buttonStart,
+                    buttonStop;
 
-    private int xOval;
-    private GraficPanel gp;
+    ButtonPanel(){
 
-    ButtonPanel(GraficPanel gp){
-        this.gp = gp;
         buttonStart = new JButton("Start");
+        buttonStop = new JButton("Stop");
 
         buttonStart.addActionListener((ActionEvent e) -> {
-            // запускаем шарик (наверное, в отдельном потоке)
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    //////////////////////////////
-                    gp.paint();
+                    MoveBall.modeStart();
                 }
             }).start();
         });
 
-        buttonStop = new JButton("Stop");
+        buttonStop.addActionListener((ActionEvent e) -> {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ////////////////////////////////////
+
+                }
+            }).start();
+        });
 
         add(buttonStart);
         add(buttonStop);
     }
-
-/*
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-
-        g.fillOval(xOval, 70, 70, 70);
-
-    }*/
-
 
 
 }

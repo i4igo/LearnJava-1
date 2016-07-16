@@ -16,6 +16,8 @@ public class FramePanel extends JPanel {
     private OptionPanel optionPanel;
     private ButtonPanel buttonPanel;
 
+    private MoveBall moveBall;
+
     private int widthFrame;
     private int heightFrame;
 
@@ -35,9 +37,11 @@ public class FramePanel extends JPanel {
         optionPanel.setPreferredSize(new Dimension(widthFrame/4, heightFrame));
         add(optionPanel, BorderLayout.EAST);
 
-        buttonPanel = new ButtonPanel(graficPanel);                                                        //добавить ссылки на другие панели
+        buttonPanel = new ButtonPanel();                                                        //добавить ссылки на другие панели
         buttonPanel.setPreferredSize(new Dimension(widthFrame, heightFrame/8));
         add(buttonPanel, BorderLayout.SOUTH);
+
+        moveBall = new MoveBall(optionPanel, graficPanel);
 
         listenerPanel = new ComponentListener() {
             @Override
