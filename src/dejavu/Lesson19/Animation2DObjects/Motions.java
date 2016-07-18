@@ -116,19 +116,19 @@ public class Motions extends JPanel {
 
     private static void moveSquareRadius(){
         int rCircle = 50;
-        int angel = 272;
+        int angel = 270;
         x1 = START_POINT + rCircle;
 
         repaintBall();
 
-        x2 = ( 2* APP_WIDTH /3 ) - (2 * x1) - (2 * rCircle);
+        x2 = ( 2* APP_WIDTH /3 ) - (2 * START_POINT) - rCircle;
         y2 = START_POINT;
         moveByLine(x2, y2, speed);
 
         while(angel < 360){
             x1 = (int) (50 * Math.cos(Math.PI * angel/180)) + x2;
-            y1 = (int) (1 * Math.sin(Math.PI * angel/180)) ;
-            System.out.println(x1+":"+y1+"-"+x2+":"+y2);
+            y1 = (int) (50 * Math.sin(Math.PI * angel/180)) + y2 + rCircle;
+
             repaintBall();
             delay(speed);
 
@@ -136,11 +136,48 @@ public class Motions extends JPanel {
         }
 
         x2 = x1;
-        y2 = ( APP_HEIGHT - 50 ) - (4 * y1) - (rCircle * 2);
+        y2 = ( APP_HEIGHT - 50 ) - (2 * START_POINT) - (rCircle * 2);
         moveByLine(x2, y2, speed);
 
+        angel=0;
 
+        while(angel < 90){
+            x1 = (int) (50 * Math.cos(Math.PI * angel/180)) + x2 - rCircle;
+            y1 = (int) (50 * Math.sin(Math.PI * angel/180)) + y2;
 
+            repaintBall();
+            delay(speed);
+
+            angel++;
+        }
+
+        x2 = START_POINT + rCircle;
+        y2 = y1;
+        moveByLine(x2, y2, speed);
+
+        while(angel < 180){
+            x1 = (int) (50 * Math.cos(Math.PI * angel/180)) + x2;
+            y1 = (int) (50 * Math.sin(Math.PI * angel/180)) + y2 - rCircle;
+
+            repaintBall();
+            delay(speed);
+
+            angel++;
+        }
+
+        x2 = START_POINT;
+        y2 = START_POINT + rCircle;
+        moveByLine(x2, y2, speed);
+
+        while(angel < 270){
+            x1 = (int) (50 * Math.cos(Math.PI * angel/180)) + x2 + rCircle;
+            y1 = (int) (50 * Math.sin(Math.PI * angel/180)) + y2;
+
+            repaintBall();
+            delay(speed);
+
+            angel++;
+        }
     }
 
     private static void moveEight(){
