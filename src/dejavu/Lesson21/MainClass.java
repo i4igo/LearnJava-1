@@ -54,11 +54,11 @@ public class MainClass {
         personsPanel.add(lCity);
         personsPanel.add(cdCity);
 
-        personsPanel.add(new JFrame());
+        personsPanel.add(new JLabel());
         personsPanel.add(bCity);
 
         personsPanel.add(bAdd);
-        personsPanel.add(new JFrame());
+        personsPanel.add(new JLabel());
 
         frame.add(personsPanel);
 
