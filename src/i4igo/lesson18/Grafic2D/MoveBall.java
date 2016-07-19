@@ -6,14 +6,16 @@ import javax.swing.*;
  * Created by Ev on 16.07.2016.
  */
 
-public class MoveBall extends JPanel{
+public class MoveBall extends JPanel {
 
     private static OptionPanel op;
     private static GraficPanel gp;
-    public static int xStartOval = 10;
+
+    public static int xStartOval = 50;
     public static int yStartOval = 50;
-    public static int widthOval = 70;
-    public static int heightOval = 70;
+    public static int widthOval = 50;
+    public static int heightOval = 50;
+
 
     MoveBall(OptionPanel op, GraficPanel gp) {
         this.op = op;
@@ -63,67 +65,77 @@ public class MoveBall extends JPanel{
         }
     }
 
-    private void moveLine(){
+    // метод moveLine() двигает объект по линии
+    private static void moveLine(int sWait){
+        int xStart = xStartOval;
+        int yStart = yStartOval;
+        int lengthLine = gp.getWidth() - (widthOval*2) - xStart;
+        for (int i = 1; i < lengthLine / 5; i++) {
+            xStartOval += 5;
+            stepWait(sWait);
+            gp.repaint();
+        }
 
+        for (int i = 1; i < (gp.getHeight() - (heightOval*2) - yStart) / 5; i++) {
+            yStartOval += 5;
+            stepWait(30);
+            gp.repaint();
+        }
     }
 
+    //метод moveCircle двигает объект по округлостям
+    private static void moveCircle(int iStart, int iStop, int sWait) {
+
+        int radius = gp.getHeight()/3;
+        int x0 = (gp.getWidth() / 2) - widthOval / 2;
+        int y0 = (gp.getHeight() / 2) - heightOval / 2;
+        for (int i = iStart; i < iStop ; i++) {
+            xStartOval = (int) (x0 + radius * Math.cos(Math.PI * i / 180));
+            yStartOval = (int) (y0 + radius * Math.sin(Math.PI * i / 180));
+            stepWait(sWait);
+            gp.repaint();
+        }
+    }
 
     // движение по горизонтали
     private static void horizontal() {
-
-        for (int i = 1; i < (gp.getWidth() - widthOval - 10) / 5; i++) {
-
-            xStartOval += 5;
-            stepWait(50);
-            gp.repaint();
-
-        }
+        moveLine(50);
     }
 
     // ускоренное движение по горизонтали
     private static void upHorizontal() {
-
-        for (int i = 0; i < (gp.getWidth() - widthOval - 10) / 5; i++) {
-            xStartOval += 5;
-            stepWait(10);
-            gp.repaint();
-        }
+        moveLine(10);
     }
 
     // движение по квадрату
     private static void square() {
         int side = 1;
+        int startX = xStartOval;
+        int startY = yStartOval;
 
         while (side < 5) {
             switch (side) {
                 case 1:
-                    for (int i = 1; i < ((gp.getWidth() - widthOval - 10) / 5); i++) {
-                        xStartOval += 5;
-                        stepWait(30);
-                        gp.repaint();
-                    }
+                    moveLine(30);
                     break;
                 case 2:
-                    for (int i = 1; i < (gp.getHeight() - heightOval - 50) / 5; i++) {
-                        yStartOval += 5;
-                        stepWait(30);
-                        gp.repaint();
-                    }
+                    moveLine(30);
                     break;
                 case 3:
-                    for (int i = ((gp.getWidth() - widthOval - 10) / 5); i > 1; i--) {
+                    for (int i = (gp.getWidth() - (widthOval*2) - startX) / 5; i > 1; i--) {
                         xStartOval -= 5;
                         stepWait(30);
                         gp.repaint();
                     }
                     break;
                 case 4:
-                    for (int i = (gp.getHeight() - heightOval - 50) / 5; i >1 ; i--) {
+                    for (int i = (gp.getHeight() - (heightOval*2) - startY) / 5; i >1 ; i--) {
                         yStartOval -= 5;
                         stepWait(30);
                         gp.repaint();
                     }
                     break;
+
                 default:
                     System.out.println("ошибка");
             }
@@ -133,39 +145,125 @@ public class MoveBall extends JPanel{
 
     // движение по кругу
     private static void circle() {
-
-        int radius = gp.getHeight()/3;
-        int x0 = (gp.getWidth() / 2) - 35;
-        int y0 = (gp.getHeight() / 2) - 35;
-
-        for (int i = 0; i < 360 ; i++) {
-
-            xStartOval = (int) (x0 + radius * Math.cos(Math.PI * i / 180));
-            yStartOval = (int) (y0 + radius * Math.sin(Math.PI * i / 180));
-
-            stepWait(30);
-            gp.repaint();
-        }
-
+        moveCircle(0, 360, 30);
     }
 
     // движение по квадрату с заокругленными углами
     private static void roundSquare() {
 
+        int side = 1;
+        int startX = xStartOval;
+        int startY = yStartOval;
+
+        int widthR = 100;
+        int heightR = 100;
+
+        int radius = widthR;
+
+        while (side < 5) {
+            switch (side) {
+                case 1:
+                    for (int i = 1; i < (gp.getWidth() - (widthOval*2) - startX - widthR) / 5; i++) {
+                        xStartOval += 5;
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+
+                    int x0 = xStartOval;
+                    int y0 = yStartOval + heightR;
+
+                    for (int i = 270; i < 360 ; i++) {
+
+                        xStartOval = (int) (x0 + radius * Math.cos(Math.PI * i / 180));
+                        yStartOval = (int) (y0 + radius * Math.sin(Math.PI * i / 180));
+
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+                    break;
+
+                case 2:
+                    for (int i = 1; i < (gp.getHeight() - (heightOval*2) - startY - (heightR*2)) / 5; i++) {
+                        yStartOval += 5;
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+                    x0 = xStartOval - widthR;
+                    y0 = yStartOval;
+
+                    for (int i = 0; i < 90 ; i++) {
+
+                        xStartOval = (int) (x0 + radius * Math.cos(Math.PI * i / 180));
+                        yStartOval = (int) (y0 + radius * Math.sin(Math.PI * i / 180));
+
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+                    break;
+                case 3:
+                    for (int i = (gp.getWidth() - (widthOval*2) - startX - (widthR*2)) / 5; i > 1; i--) {
+                        xStartOval -= 5;
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+
+
+                    x0 = xStartOval;
+                    y0 = yStartOval - heightR;
+
+                    for (int i = 90; i < 180 ; i++) {
+
+                        xStartOval = (int) (x0 + radius * Math.cos(Math.PI * i / 180));
+                        yStartOval = (int) (y0 + radius * Math.sin(Math.PI * i / 180));
+
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+                    break;
+                case 4:
+                    for (int i = (gp.getHeight() - (heightOval*2) - startY - (heightR*2)) / 5; i >1 ; i--) {
+                        yStartOval -= 5;
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+
+                    x0 = xStartOval + widthR;
+                    y0 = yStartOval;
+
+                    for (int i = 180; i < 270 ; i++) {
+
+                        xStartOval = (int) (x0 + radius * Math.cos(Math.PI * i / 180));
+                        yStartOval = (int) (y0 + radius * Math.sin(Math.PI * i / 180));
+
+                        stepWait(30);
+                        gp.repaint();
+                    }
+
+                    break;
+
+                default:
+                    System.out.println("ошибка");
+            }
+            side++;
+        }
     }
 
     // движение по "восьмерке"
     private static void eight() {
 
-        int radius = gp.getHeight()/4;
-        int x0 = gp.getWidth()/2+105;
-        int y0 = (gp.getHeight() / 2) - 35;
-
+        int radius = gp.getHeight() / 4;
+        int x0 = gp.getWidth() / 2 + 105;
+        int y0 = gp.getHeight() / 2 - 35;
         for (int i = 0; i < 360 ; i++) {
-
             xStartOval = (int) (x0 + Math.round(250* Math.cos(Math.PI * i / 180) ) * (Math.sin(Math.PI * i / 180)) - radius);
             yStartOval = (int) (y0 - Math.round(250* Math.sin(Math.PI * i / 180)));
-
             stepWait(30);
             gp.repaint();
         }
